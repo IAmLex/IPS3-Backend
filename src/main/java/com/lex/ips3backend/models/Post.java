@@ -6,30 +6,27 @@ import lombok.Getter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Entity
-public class User {
+public class Post {
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     @Column(name="ID")
     @Getter
     private Integer id;
 
-    @OneToMany(
-            mappedBy="user",
-            cascade=CascadeType.ALL,
-            orphanRemoval=true
-    )
-    @JsonBackReference
+    @ManyToOne(fetch=FetchType.EAGER)
+    @JsonManagedReference
     @Getter
-    private List<Post> posts;
+    private User user;
 
     @Getter
-    private String username;
+    private String content;
 
     @Getter
-    private String password;
+    private String caption;
+
+    // Comments
 
     @Column(name="created_at",
             columnDefinition="DATETIME DEFAULT CURRENT_TIMESTAMP",
