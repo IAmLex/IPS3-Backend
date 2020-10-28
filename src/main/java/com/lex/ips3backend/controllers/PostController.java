@@ -1,6 +1,7 @@
 package com.lex.ips3backend.controllers;
 
 import com.lex.ips3backend.models.Post;
+import com.lex.ips3backend.models.User;
 import com.lex.ips3backend.services.PostService;
 import org.springframework.web.bind.annotation.*;
 
@@ -21,8 +22,12 @@ public class PostController {
         return this.postService.GetAll();
     }
 
-//    @PostMapping("")
-//    public void Insert(@RequestBody Post post) {
-//        this.postService.Insert(post);
-//    }
+    @PostMapping("/content/{content}/caption/{caption}/userId/{userId}")
+    public void Insert(@PathVariable String content, @PathVariable String caption, @PathVariable Integer userId) {
+        // FIXME: Make request body
+        User user = new User(userId);
+        Post post = new Post(content, caption, user);
+
+        this.postService.Insert(post);
+    }
 }

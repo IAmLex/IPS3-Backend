@@ -3,6 +3,7 @@ package com.lex.ips3backend.models;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -38,4 +39,12 @@ public class Post {
     @Column(name="deleted_at")
     @Getter
     private LocalDateTime deletedAt;
+
+    public Post() {}
+
+    public Post(String content, String caption, User user) {
+        this.content = content;
+        this.caption = caption;
+        this.user = user;
+    }
 }

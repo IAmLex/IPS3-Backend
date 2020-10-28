@@ -21,7 +21,7 @@ public class PostService {
         return posts;
     }
 
-    public void Insert(Post post, Integer userId) {
+    public void Insert(Post post) {
         this.postRepository.save(post);
     }
 }
