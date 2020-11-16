@@ -55,4 +55,10 @@ public class User {
     @Column(name="deleted_at")
     @Getter
     private LocalDateTime deletedAt;
+
+    public User() {}
+
+    public User(Integer id) {
+        this.id = id;
+    }
 }

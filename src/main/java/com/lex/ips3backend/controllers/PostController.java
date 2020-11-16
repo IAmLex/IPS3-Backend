@@ -1,6 +1,7 @@
 package com.lex.ips3backend.controllers;
 
 import com.lex.ips3backend.models.Post;
+import com.lex.ips3backend.models.User;
 import com.lex.ips3backend.services.PostService;
 import org.springframework.web.bind.annotation.*;
 
