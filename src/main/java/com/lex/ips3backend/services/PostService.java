@@ -15,13 +15,14 @@ public class PostService {
     }
 
     public List<Post> GetAll() {
-        List<Post> posts = this.postRepository.findAll();
-
-
-        return posts;
+        return this.postRepository.findAllByOrderByCreatedAtDesc();
     }
 
-    public void Insert(Post post, Integer userId) {
+    public void Insert(Post post) {
         this.postRepository.save(post);
+    }
+
+    public Post getById(Integer postId) {
+        return this.postRepository.findById(postId).orElse(null);
     }
 }

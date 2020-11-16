@@ -21,8 +21,13 @@ public class PostController {
         return this.postService.GetAll();
     }
 
-//    @PostMapping("")
-//    public void Insert(@RequestBody Post post) {
-//        this.postService.Insert(post);
-//    }
+    @GetMapping("/{postId}")
+    public Post getById(@PathVariable Integer postId) {
+        return this.postService.getById(postId);
+    }
+
+    @PostMapping("")
+    public void Insert(@RequestBody Post post) {
+        this.postService.Insert(post);
+    }
 }

@@ -16,20 +16,24 @@ public class UserService {
         this.userRepository = userRepository;
     }
 
-    public List<User> GetAll() {
+    public List<User> getAll() {
         return this.userRepository.findAll();
     }
 
-    public User SelectUser(Integer id) {
+    public User getUser(Integer id) {
         return this.userRepository.findById(id).orElse(null);
     }
 
-    public void Insert(User user) {
+    public void insert(User user) {
         this.userRepository.save(user);
     }
 
-    public List<Post> GetPosts(Integer userId) {
+    public List<Post> getPosts(Integer userId) {
         // TODO: Remove user from data
-        return this.SelectUser(userId).getPosts();
+        return this.getUser(userId).getPosts();
+    }
+
+    public User getByEmailAndPassword(User user) {
+        return this.userRepository.findByEmailAndPassword(user.getEmail(), user.getPassword());
     }
 }

@@ -17,17 +17,22 @@ public class UserController {
     }
 
     @GetMapping("")
-    public List<User> GetAll() {
-        return this.userService.GetAll();
+    public List<User> getAll() {
+        return this.userService.getAll();
     }
 
-    @GetMapping("/{userId}/getPosts")
-    public List<Post> GetPosts(@PathVariable Integer userId) {
-        return this.userService.GetPosts(userId);
+    @GetMapping("/{userId}")
+    public User getById(@PathVariable Integer userId) {
+        return this.userService.getUser(userId);
+    }
+
+    @GetMapping("/{userId}/posts")
+    public List<Post> getPosts(@PathVariable Integer userId) {
+        return this.userService.getPosts(userId);
     }
 
     @PostMapping("")
-    public void Insert(@RequestBody User user) {
-        this.userService.Insert(user);
+    public void insert(@RequestBody User user) {
+        this.userService.insert(user);
     }
 }
