@@ -1,9 +1,6 @@
 package com.lex.ips3backend.models;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.annotation.*;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -23,25 +20,26 @@ public class Post {
     @Getter
     private User user;
 
-//    @OneToMany(
-//            mappedBy="post",
-//            cascade=CascadeType.ALL,
-//            orphanRemoval=true
-//    )
-//    @JsonBackReference
-//    @Getter
-//    private List<Comment> comments;
+    @OneToMany(
+            mappedBy="post",
+            cascade=CascadeType.ALL,
+            orphanRemoval=true
+    )
+    @JsonIgnore
+    @Getter
+    private List<Comment> comments;
 
     @Getter
     private String content;
 
     @Getter
     private String caption;
-
-    @Column(name="created_at",
+    @Column(
+            name="created_at",
             columnDefinition="DATETIME DEFAULT CURRENT_TIMESTAMP",
             nullable = false,
-            insertable = false)
+            insertable = false
+    )
     @Getter
     private LocalDateTime createdAt;
 

@@ -23,4 +23,8 @@ public class CommentService {
     public void insert(Comment comment) {
         this._commentRepository.save(comment);
     }
+
+    public Comment getById(Integer commentId) {
+        return this._commentRepository.findById(commentId).orElse(null);
+    }
 }

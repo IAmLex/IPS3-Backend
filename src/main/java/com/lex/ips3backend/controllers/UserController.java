@@ -1,5 +1,6 @@
 package com.lex.ips3backend.controllers;
 
+import com.lex.ips3backend.models.Comment;
 import com.lex.ips3backend.models.Post;
 import com.lex.ips3backend.models.User;
 import com.lex.ips3backend.services.UserService;
@@ -31,8 +32,10 @@ public class UserController {
         return this.userService.getPosts(userId);
     }
 
+
     @PostMapping("")
     public void insert(@RequestBody User user) {
         this.userService.insert(user);
     }
+
 }

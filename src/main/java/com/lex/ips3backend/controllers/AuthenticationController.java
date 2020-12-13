@@ -22,7 +22,7 @@ public class AuthenticationController {
     public Token login(@RequestBody User user) {
         User selectedUser = this._userService.getByEmailAndPassword(user);
 
-        String token = null;
+        String token;
         if (selectedUser != null) {
             token = this._jwtTokenService.createToken(selectedUser);
 
@@ -32,6 +32,7 @@ public class AuthenticationController {
     }
 }
 
+// TODO: hoe moet ik dit oplossen?
 class Token {
     public Integer userId;
     public String token;

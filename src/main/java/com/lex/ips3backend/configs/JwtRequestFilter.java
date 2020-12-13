@@ -26,7 +26,10 @@ public class JwtRequestFilter extends OncePerRequestFilter {
         System.out.print(String.format("%s %s ", request.getMethod(), request.getRequestURL()));
         System.out.println(token);
 
-        if (token != null && !request.getRequestURL().toString().contains("api/authentication/login")) {
+        boolean isRegisterRequest = request.getRequestURL().toString().contains("api/user") && request.getMethod().equals("POST");
+        boolean isLoginRequest = request.getRequestURL().toString().contains("api/authentication/login");
+
+        if (token != null && !isLoginRequest && !isRegisterRequest) {
             this._jwtTokenService.validateToken(token);
         }
 

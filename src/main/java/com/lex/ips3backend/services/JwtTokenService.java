@@ -13,15 +13,11 @@ import java.util.*;
 
 @Service
 public class JwtTokenService {
-    final private UserService userService;
-
     final private String _secret;
     final private Integer _expirationTime;
     final private String _prefix;
 
-    public JwtTokenService(UserService userService) {
-        this.userService = userService;
-
+    public JwtTokenService() {
         this._secret = "VerySecretTokenYess";
         this._expirationTime = 28800000;
         this._prefix = "Bearer ";

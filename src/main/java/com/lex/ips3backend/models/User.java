@@ -1,9 +1,6 @@
 package com.lex.ips3backend.models;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.annotation.*;
 import lombok.Getter;
 
 import javax.persistence.*;
@@ -23,7 +20,7 @@ public class User {
             cascade=CascadeType.ALL,
             orphanRemoval=true
     )
-    @JsonBackReference
+    @JsonIgnore
     @Getter
     private List<Post> posts;
 
@@ -32,23 +29,24 @@ public class User {
             cascade=CascadeType.ALL,
             orphanRemoval=true
     )
-    @JsonBackReference
+    @JsonIgnore
     @Getter
     private List<Comment> comments;
 
     @Getter
     private String username;
 
-    @Getter
     private String password;
 
     @Getter
     private String email;
 
-    @Column(name="created_at",
-            columnDefinition="DATETIME DEFAULT CURRENT_TIMESTAMP",
-            nullable = false,
-            insertable = false)
+    @Column(
+        name="created_at",
+        columnDefinition="DATETIME DEFAULT CURRENT_TIMESTAMP",
+        nullable = false,
+        insertable = false
+    )
     @Getter
     private LocalDateTime createdAt;
 
@@ -60,5 +58,16 @@ public class User {
 
     public User(Integer id) {
         this.id = id;
+    }
+
+    @JsonGetter("password")
+    @JsonIgnore
+    public String getPassword() {
+        return this.password;
+    }
+
+    @JsonSetter("password")
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

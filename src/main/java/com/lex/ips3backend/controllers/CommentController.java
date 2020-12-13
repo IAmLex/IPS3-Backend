@@ -2,6 +2,7 @@ package com.lex.ips3backend.controllers;
 
 import com.lex.ips3backend.models.Comment;
 import com.lex.ips3backend.models.Post;
+import com.lex.ips3backend.models.User;
 import com.lex.ips3backend.services.CommentService;
 import com.lex.ips3backend.services.PostService;
 import org.springframework.web.bind.annotation.*;
@@ -25,5 +26,15 @@ public class CommentController {
     @PostMapping("")
     public void insert(@RequestBody Comment comment) {
         this._commentService.insert(comment);
+    }
+
+    @GetMapping("/{commentId}")
+    public Comment getCommentById(@PathVariable Integer commentId) {
+        return this._commentService.getById(commentId);
+    }
+
+    @GetMapping("/{commentId}/user")
+    public User getUser(@PathVariable Integer commentId) {
+        return this._commentService.getById(commentId).getUser();
     }
 }

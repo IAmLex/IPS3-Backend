@@ -1,10 +1,8 @@
 package com.lex.ips3backend.models;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIdentityInfo;
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.fasterxml.jackson.annotation.ObjectIdGenerators;
+import com.fasterxml.jackson.annotation.*;
 import lombok.Getter;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -17,9 +15,8 @@ public class Comment {
     @Getter
     private Integer id;
 
-//    @ManyToOne(fetch=FetchType.EAGER)
-//    @Getter
-//    private Post post;
+    @ManyToOne(fetch=FetchType.EAGER)
+    private Post post;
 
     @ManyToOne(fetch=FetchType.EAGER)
     @Getter
@@ -28,14 +25,27 @@ public class Comment {
     @Getter
     private String text;
 
-    @Column(name="created_at",
+    @Column(
+            name="created_at",
             columnDefinition="DATETIME DEFAULT CURRENT_TIMESTAMP",
             nullable = false,
-            insertable = false)
+            insertable = false
+    )
     @Getter
     private LocalDateTime createdAt;
 
     @Column(name="deleted_at")
     @Getter
     private LocalDateTime deletedAt;
+
+    @JsonGetter("post")
+    @JsonIgnore
+    public Post getPost() {
+        return this.post;
+    }
+
+    @JsonSetter("post")
+    public void setPost(Post post) {
+        this.post = post;
+    }
 }
